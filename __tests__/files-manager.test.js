@@ -18,12 +18,7 @@ describe('createDir()', () => {
     const dir = '/root/dir';
     jest.spyOn(fsp, 'mkdir').mockRejectedValue(new Error('Mock error'));
 
-    expect.assertions(1);
-    try {
-      await createDir(dir);
-    } catch (e) {
-      expect(e.message).toBe(`Failed to create ${dir}`);
-    }
+    await expect(createDir(dir)).rejects.toThrow(`Failed to create ${dir}`);
   });
 });
 
@@ -32,11 +27,6 @@ describe('saveFile()', () => {
     const dataEntry = new DataEntry('/link', '', '/root/dir');
     jest.spyOn(fsp, 'writeFile').mockRejectedValue(new Error('Mock error'));
 
-    expect.assertions(1);
-    try {
-      await saveFile(dataEntry);
-    } catch (e) {
-      expect(e.message).toBe(`Failed to save ${dataEntry.filePath}`);
-    }
+    await expect(saveFile(dataEntry)).rejects.toThrow(`Failed to save ${dataEntry.filePath}`);
   });
 });

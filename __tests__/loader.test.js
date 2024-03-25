@@ -9,11 +9,6 @@ describe('loadResource()', () => {
 
     const url = 'https://test/page';
 
-    expect.assertions(1);
-    try {
-      await loadResource(url);
-    } catch (e) {
-      expect(e.message).toBe(`Failed to load ${url}`);
-    }
+    await expect(loadResource(url)).rejects.toThrow(`Failed to load ${url}`);
   });
 });

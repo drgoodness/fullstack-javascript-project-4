@@ -8,7 +8,7 @@ test:
 		npx jest --detectOpenHandles $(ARGS)
 
 test-coverage:
-		$(MAKE) test ARGS="--coverage"
+		npx jest --coverage
 
 test-debug:
 		$(MAKE) test DEBUG=axios,nock.*,page-loader*
